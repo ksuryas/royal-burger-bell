@@ -1,0 +1,8 @@
+.CheckoutSummary {
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
+.CheckoutSummary h4 {
+    font-weight: bold;
+}
