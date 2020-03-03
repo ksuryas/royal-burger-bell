@@ -91,12 +91,13 @@ render() {
         invalid={!formEl.config.valid}
         shouldValidate={formEl.config.validation}
         touched={formEl.config.touched} 
+        label={formEl.id}
         />
         ));
         
       let form = (
         <form onSubmit={(event) => this.submitHandler(event)}> 
-          <h4>{this.state.inSignupMode ? 'Signup' : 'Sign In'} Here:</h4>
+          <h4>If you're a {this.state.inSignupMode ? 'new user, Signup' : 'old user, Sign In'} Here:</h4>
           {inputElBoxes} 
           <Button btnType="Success">{this.state.inSignupMode ? 'Signup' : 'Sign In'}</Button>
         </form>

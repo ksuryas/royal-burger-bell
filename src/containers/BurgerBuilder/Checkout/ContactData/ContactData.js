@@ -189,6 +189,8 @@ changed={(event) => this.inputChangedHandler(event, formEl.id)}
 invalid={!formEl.config.valid}
 shouldValidate={formEl.config.validation}
 touched={formEl.config.touched} 
+label={formEl.id}
+msg='Pick one option - This is a dropdown.'
 />
 ));
       let form = (

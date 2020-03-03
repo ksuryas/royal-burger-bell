@@ -9,6 +9,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/main';
+import BreadControls from '../../components/BreadControls/BreadControls';
 
 class BurgerBuilder extends Component {
     state = { 
@@ -63,7 +64,14 @@ updatePurchaseState(ingredients) {
        if(this.props.ings) {
         burger = (
             <Aux>
-                <Burger ingredients={this.props.ings} />
+            <BreadControls 
+                purchaseable={this.state.purchaseable} 
+                breadPrice='0.00' 
+                replaceBreadType={() => console.log('Replaced bread type!')} 
+                continued={() => console.warn('Warning: Feature is not implemented yet!')} 
+                isAuth={this.props.isAuthenticated} />
+                <hr></hr>
+                <Burger ingredients={this.props.ings} />                
                 <BuildControls 
                  onIngredientAdded={this.props.onIngredientAdded} 
                  onIngredientRemoved={this.props.onIngredientRemoved} 

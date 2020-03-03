@@ -17,19 +17,23 @@ const input = (props) => {
         inputEl = <textarea className={inputClasses} {...props.elementConfig} value={props.value} onChange={props.changed} />;
         break;
         case('select'): 
-        inputEl = <select className={inputClasses} value={props.value} onChange={props.changed}>
+        inputEl = (
+        <div>
+         {props.msg}   <select className={inputClasses} value={props.value} onChange={props.changed}>
             {props.elementConfig.options.map(option => (
                 <option value={option.value} key={option.value}>{option.displayValue}</option> 
             ))}
-      </select>;
+        </select>
+            </div>
+            );
     break;
         default:
         inputEl = <input className={inputClasses} {...props.elementConfig} value={props.value} onChange={props.changed} />;
     };
+    let labelClass = [classes.Label];
     return (
     <div className={classes.Input}>
-        <label className={classes.Label}>{props.label}</label>
-        {inputEl}       
+    <label className={labelClass}>{props.label}:</label> {inputEl}       
     </div>
 );
 };

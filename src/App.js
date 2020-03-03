@@ -22,6 +22,10 @@ const asyncOrders = asyncComponent(() => {
   return import('./containers/Orders/Orders');
 });
 
+const asyncContactUs = asyncComponent(() => {
+  return import('./components/UI/ThankYou/ContactUs/ContactUs');
+})
+
 class App extends Component {
   componentDidMount() {
     this.props.onTryAutoSignup();
@@ -32,6 +36,7 @@ class App extends Component {
        <Switch>
          <Route path="/" exact component={Intro} />  
          <Route path="/auth" component={asyncAuth} />
+         <Route path="/contact-us" component={asyncContactUs} />
           <Route path="/burger-builder" render={(routeProps) => <BurgerBuilder {...routeProps} />} />   
           <Redirect to="/burger-builder" />
        </Switch>
@@ -40,10 +45,11 @@ class App extends Component {
      if(this.props.isAuth) {
        routes = (
          <Switch>
-         <Route path="/" exact component={Intro} />
+          <Route path="/" exact component={Intro} />
          <Route path="/auth" component={asyncAuth} /> 
          <Route path="/logout" component={Logout} />
         <Route path="/burger-builder" render={(routeProps) => <BurgerBuilder {...routeProps} />} />   
+        <Route path="/contact-us" component={asyncContactUs} />
         <Route path="/checkout" component={asyncCheckout} />
         <Route path="/orders" component={asyncOrders} />
         <Route path="/thank-you" component={ThankYou} />
