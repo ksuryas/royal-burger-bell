@@ -1,0 +1,7 @@
+
+   if(transformedBreads === null) { 
+       console.error('Still an issue! Shraddha aur saburi rakkho, developer'); 
+    }
+
+       <BurgerBreads breadType={transformedBreads} />
+     

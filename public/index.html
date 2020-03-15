@@ -16,7 +16,25 @@
     <title>Royal Burger Bell(RBB)</title>
     </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-analytics.js"></script>
+
+<script>
+  // My web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAYEjYvDiZPquoPA0oD2WOjfV6QQ6VS5HM",
+    authDomain: "mcburger-reactjs-app.firebaseapp.com",
+    databaseURL: "https://mcburger-reactjs-app.firebaseio.com",
+    projectId: "mcburger-reactjs-app",
+    storageBucket: "mcburger-reactjs-app.appspot.com",
+    messagingSenderId: "355468765135",
+    appId: "1:355468765135:web:b3c438ba8cd2a3faa9d4ba",
+    measurementId: "G-MGSRJB6XY1"
+  };
+  // Initializing Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
     <div id="root"></div>
   </body>
 </html>

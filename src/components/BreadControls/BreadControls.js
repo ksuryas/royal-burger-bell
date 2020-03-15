@@ -1,9 +1,10 @@
 import React from 'react';
 import classes from './BreadControls.module.css';
 import BreadControl from '../BreadControls/BreadControl/BreadControl';
+import Aux from '../../hoc/Auxilliary/Auxilliary';
 
 const controls = [
-    {label: 'Default', type: 'seeds'},
+    {label: 'Sesame Seeds', type: 'seeds'},
     {label: 'Plain', type: 'plain'},
     {label: 'Gluten Free', type: 'glutenFree'},
     {label: 'Potato', type: 'potato'},
@@ -11,7 +12,9 @@ const controls = [
 ];
 
 const breadControls = (props) => (
-    <div className={classes.BreadControls}>
+ <Aux>
+     <h1 style={{textAlign: 'center', fontWeight: 'bold'}}>Pick your favorite type of bread below:</h1>
+       <div className={classes.BreadControls}>
             <p>Current Price: <strong style={{color: 'green'}}>{'$' + props.breadPrice}</strong></p>
             {controls.map(ctrl => (
             <BreadControl 
@@ -22,9 +25,9 @@ const breadControls = (props) => (
         ))}  
         <button 
         onClick={props.continued}
-        className={classes.ContinueButton} 
-        disabled={props.purchaseable}>{props.isAuth ? 'Continue' : 'Click to continue with the next step!'}</button>
+        className={classes.ContinueButton}>{props.isAuth ? 'Continue' : 'Click to continue with the next step!'}</button>
     </div>
+    </Aux>
 );
 
 export default breadControls;

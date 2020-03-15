@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Address from '../Address/Address';
+import Button from '../../Button/Button';
 
 class ContactUs extends Component {
     render() {
@@ -13,6 +14,7 @@ class ContactUs extends Component {
                 <Address country='USA' address={usa} />
                 <h3>Questions?:</h3>
                 <Address country='For Other countries/Questions' address='Whatsapp us at +1 214-1GA-AAJT' />
+                <Button btnType="Success" goTo='/feedback-form' openTab="_blank">Give Feedback</Button>
             </div>
         );
     };

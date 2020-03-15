@@ -15,9 +15,10 @@ class BurgerBuilder extends Component {
     state = { 
         purchaseable: false,
         purchasing: false
-    }; 
+}; 
 
 componentDidMount() {
+    this.props.onInitBreadTypes();
     this.props.onInitIngredients();
 };
 
@@ -59,19 +60,17 @@ updatePurchaseState(ingredients) {
       let orderSummary = null;
       let tax = 0.08 * this.props.price;  
       let price = this.props.price + tax.toFixed(2);
-      let burger = this.props.error ? <p style={{textAlign: 'center', color: 'red'}}>Sorry, the burger ingredients can't be loaded!</p> : <Spinner />;
+      let burger = this.props.error && this.props.errorBread ? <p style={{textAlign: 'center', color: 'red'}}>Sorry, either the burger ingredients nor the bread types can't be loaded!</p> : <Spinner />;
       
        if(this.props.ings) {
         burger = (
             <Aux>
             <BreadControls 
-                purchaseable={this.state.purchaseable} 
-                breadPrice='0.00' 
-                replaceBreadType={() => console.log('Replaced bread type!')} 
-                continued={() => console.warn('Warning: Feature is not implemented yet!')} 
+                breadPrice={this.props.breadPrice}
+                replaceBreadType={() => this.props.onReplaceBreadType(this.props.breadTypes)} 
+                continued={() => window.scrollTo(0, document.body.scrollHeight)} 
                 isAuth={this.props.isAuthenticated} />
-                <hr></hr>
-                <Burger ingredients={this.props.ings} />                
+                <Burger ingredients={this.props.ings} breads='glutenFree' />                
                 <BuildControls 
                  onIngredientAdded={this.props.onIngredientAdded} 
                  onIngredientRemoved={this.props.onIngredientRemoved} 
@@ -106,17 +105,22 @@ const mapStateToProps = state => {
 return {
     ings: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice.toFixed(2),
+   breadTypes: state.burgerBread.breadTypes,
     error: state.burgerBuilder.error,
-    isAuthenticated: state.auth.token !== null
+    isAuthenticated: state.auth.token !== null,
+    errorBread: state.burgerBread.error,
+    breadPrice: state.burgerBread.breadPrice.toFixed(2)
 };
 };
 
 const mapDispatchToProps = dispatch => {
 return {
     onIngredientAdded: (ingName) => dispatch(actions.addIngredient(ingName)),
+    onReplaceBreadType: (breadName) => dispatch(actions.replaceBreadType(breadName)),
     onIngredientRemoved: (ingName) => dispatch(actions.removeIngredient(ingName)),
     onResetIngs: (ingName) => dispatch(actions.resetIngredient(ingName)),
     onInitIngredients: () => dispatch(actions.initIngredients()),
+    onInitBreadTypes: () => dispatch(actions.initBreadTypes()),
     onInitPurchase: () => dispatch(actions.purchaseInit()),
     onSetAuthRedirectPath: (path) => dispatch(actions.setAuthRedirectPath(path))
 };

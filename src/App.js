@@ -3,7 +3,6 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Intro from './components/UI/Intro/lntro';
-import ThankYou from './components/UI/ThankYou/ThankYou';
 // import notFoundPage from './components/UI/notFoundPage/notFoundPage';
 import Logout from './containers/Auth/Logout/Logout';
 import * as actions from './store/actions/main';
@@ -24,7 +23,15 @@ const asyncOrders = asyncComponent(() => {
 
 const asyncContactUs = asyncComponent(() => {
   return import('./components/UI/ThankYou/ContactUs/ContactUs');
-})
+});
+
+const asyncFeedbackForm = asyncComponent(() => {
+  return import('./components/UI/ThankYou/ContactUs/FeedbackForm/FeedbackForm');
+});
+
+const asyncThankYou = asyncComponent(() => {
+  return import('./components/UI/ThankYou/ThankYou');
+});
 
 class App extends Component {
   componentDidMount() {
@@ -36,8 +43,9 @@ class App extends Component {
        <Switch>
          <Route path="/" exact component={Intro} />  
          <Route path="/auth" component={asyncAuth} />
+         <Route path="/feedback-form" component={asyncFeedbackForm} />
          <Route path="/contact-us" component={asyncContactUs} />
-          <Route path="/burger-builder" render={(routeProps) => <BurgerBuilder {...routeProps} />} />   
+        <Route path="/burger-builder" render={(routeProps) => <BurgerBuilder {...routeProps} />} />   
           <Redirect to="/burger-builder" />
        </Switch>
      );
@@ -50,9 +58,10 @@ class App extends Component {
          <Route path="/logout" component={Logout} />
         <Route path="/burger-builder" render={(routeProps) => <BurgerBuilder {...routeProps} />} />   
         <Route path="/contact-us" component={asyncContactUs} />
+        <Route path="/feedback-form" component={asyncFeedbackForm} />
         <Route path="/checkout" component={asyncCheckout} />
         <Route path="/orders" component={asyncOrders} />
-        <Route path="/thank-you" component={ThankYou} />
+        <Route path="/order-confirmed" component={asyncThankYou} />
         <Redirect to="/burger-builder" />
         </Switch>
        );
