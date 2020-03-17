@@ -10,6 +10,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/main';
 import BreadControls from '../../components/BreadControls/BreadControls';
+import Button from '../../components/UI/Button/Button';
 
 class BurgerBuilder extends Component {
     state = { 
@@ -68,9 +69,11 @@ updatePurchaseState(ingredients) {
             <BreadControls 
                 breadPrice={this.props.breadPrice}
                 replaceBreadType={() => this.props.onReplaceBreadType(this.props.breadTypes)} 
-                continued={() => window.scrollTo(0, document.body.scrollHeight)} 
+                hrefHash="burger"
                 isAuth={this.props.isAuthenticated} />
-                <Burger ingredients={this.props.ings} breads='glutenFree' />                
+                <div id="burger" style={{textAlign: 'right'}}>
+                <Burger ingredients={this.props.ings} />
+                <Button style={{color: 'black', border: '1px solid black'}} clicked={() => window.scrollTo(0, 0)}>^</Button>                
                 <BuildControls 
                  onIngredientAdded={this.props.onIngredientAdded} 
                  onIngredientRemoved={this.props.onIngredientRemoved} 
@@ -80,7 +83,8 @@ updatePurchaseState(ingredients) {
                  isAuth={this.props.isAuthenticated}
                  purchaseable={this.updatePurchaseState(this.props.ings)}
                  ordered={this.purchaseHandler} />
-            </Aux>
+                 </div>
+          </Aux>
         ); 
            orderSummary = <OrderSummary 
            beforeTax={this.props.price}

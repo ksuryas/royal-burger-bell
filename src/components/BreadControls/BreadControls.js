@@ -4,11 +4,11 @@ import BreadControl from '../BreadControls/BreadControl/BreadControl';
 import Aux from '../../hoc/Auxilliary/Auxilliary';
 
 const controls = [
-    {label: 'Sesame Seeds', type: 'seeds'},
-    {label: 'Plain', type: 'plain'},
-    {label: 'Gluten Free', type: 'glutenFree'},
-    {label: 'Potato', type: 'potato'},
-    {label: 'Sliced', type: 'sliced'}
+    {label: 'Sesame Seeds', type: 'seeds', remarks: 'The Default: Low Carbs, High Protein & Good Fat - Good for health'},
+    {label: 'Plain', type: 'plain', remarks: 'Not Tasty & Recommended!'},
+    {label: 'Gluten Free', type: 'glutenFree', remarks: '2nd best for Diabetes patients!'},
+    {label: 'Potato', type: 'potato', remarks: 'Increases B.P. for Diabetes patients!'},
+    {label: 'Wheat', type: 'wheat', remarks: 'First best for Diabetes patients!'}
 ];
 
 const breadControls = (props) => (
@@ -21,11 +21,13 @@ const breadControls = (props) => (
             replace={() => props.replaceBreadType(ctrl.type)}
             key={ctrl.label} 
             label={ctrl.label}
+            remarks={ctrl.remarks}
             />
         ))}  
+        <a href={"/burger-builder#" + props.hrefHash}>
         <button 
-        onClick={props.continued}
-        className={classes.ContinueButton}>{props.isAuth ? 'Continue' : 'Click to continue with the next step!'}</button>
+      className={classes.ContinueButton}>{props.isAuth ? 'Continue' : 'Click to continue with the next step!'}</button>
+      </a>
     </div>
     </Aux>
 );

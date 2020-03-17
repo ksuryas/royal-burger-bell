@@ -4,6 +4,7 @@
     align-items: center;
     margin: 5px 0;
  }
+
  .BreadControl button {
      display: block;
      font: inherit;
@@ -14,26 +15,40 @@
      cursor: pointer;
      outline: none;  
  }
+
  .BreadControl button:disabled {
      background-color: #AC9980;
      border: 1px solid #7E7365;
      color: #ccc;
      cursor: default;
  }
+
  .BreadControl button:hover:disabled {
      background-color: #AC9980;
      color: #ccc;
      cursor: not-allowed;
  }
+
  .Label {
      padding: 10px;
      font-weight: bold;
      width: 80px;
  }
+
+ .Remarks {
+    padding: 16px;
+    font-weight: lighter;
+    width: 100px;
+    align-items: center;
+    color: green;
+    border: 2px solid red;
+ }
+
  .BreadControl .Replace {  
      background-color: #D39952;
      color: white;
  }
+ 
  .BreadControl .Replace:hover, .BreadControl .Replace:active {  
      background-color: #DAA972;
      color: white;

@@ -23,7 +23,7 @@ const setBreadType = (state) => {
         plain: 0,
         potato: 0,
         seeds: 0,
-        sliced: 0
+        wheat: 0
     },
     error: false,
     breadPrice: 0,

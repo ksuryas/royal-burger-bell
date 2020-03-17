@@ -40,7 +40,15 @@ state = {
     touched: false 
 }
 },
-inSignupMode: true 
+inSignupMode: true,
+sendgrid: {
+    email: {
+        recipient: '',
+        sender: 'surya.kasibhatla@gmail.com',
+        subject: 'Welcome to RBB, new user!',
+        text: ''
+    }
+} 
 };
 
 componentDidMount() {
@@ -48,6 +56,7 @@ if(!this.props.buildingBurger && this.props.authRedirectPath) {
     this.props.onSetAuthRedirectPath('/burger-builder');
 }
 };
+
 
 inputChangedHandler = (event, controlName) => {
     const updatedAuthForm = utils.updateObject(this.state.controls, {
@@ -60,12 +69,20 @@ inputChangedHandler = (event, controlName) => {
       this.setState({controls: updatedAuthForm}); 
     };
     
+    // sendEmail = () => {
+    //     let vs = `http://127.0.0.1:4000/send-email?recipient=${this.state.sendgrid.email.recipient}&sender=${this.state.sendgrid.email.sender}&topic=${this.state.sendgrid.email.subject}&message=${this.state.sendgrid.email.text}`;
+    //     fetch(vs).catch(error => {
+    //         console.log(error);
+    //     });
+    // };
+
     submitHandler = (event) => {
         event.preventDefault();
         this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.inSignupMode);
+//        this.sendEmail();
     };
 
-switchAuthModeHandler = () => {
+    switchAuthModeHandler = () => {
   this.setState(prevState => {
       return {
           inSignupMode: !prevState.inSignupMode
